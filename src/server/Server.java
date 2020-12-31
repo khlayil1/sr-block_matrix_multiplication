@@ -1,3 +1,7 @@
+package server;
+
+import serviceImp.MatrixServiceFactoryImp;
+
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -20,7 +24,7 @@ public class Server {
             MatrixServiceFactoryImp matrixServiceFactoryImp = new MatrixServiceFactoryImp();
             registry.rebind("matrixProduct", matrixServiceFactoryImp);
 
-            System.out.println("Server UP");
+            System.out.println("server.Server UP");
         } catch (RemoteException e) {
             e.printStackTrace();
         }

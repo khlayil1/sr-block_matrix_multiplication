@@ -1,3 +1,7 @@
+package client;
+
+import service.MatrixServiceFactory;
+
 import java.io.DataInputStream;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

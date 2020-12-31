@@ -1,3 +1,7 @@
+package serviceImp;
+
+import service.MatrixService;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -37,7 +41,6 @@ public class MatrixServiceImp extends UnicastRemoteObject implements MatrixServi
         return res;
     }
 
-
     private void divideMatrixIntoBlocks(int[][] P, int[][] C, int i, int j) {
         for (int i1 = 0, i2 = i; i1 < C.length; i1++, i2++)
             for (int j1 = 0, j2 = j; j1 < C.length; j1++, j2++)
@@ -49,36 +52,23 @@ public class MatrixServiceImp extends UnicastRemoteObject implements MatrixServi
     public int[][] getBlockC11(int[][] m1, int[][] m2) throws RemoteException {
         int n = m1.length;
 
-
         // first matrix
         int[][] a = new int[n / 2][n / 2];
         int[][] b = new int[n / 2][n / 2];
-        int[][] c = new int[n / 2][n / 2];
-        int[][] d = new int[n / 2][n / 2];
 
         // second matrix
         int[][] e = new int[n / 2][n / 2];
-        int[][] f = new int[n / 2][n / 2];
         int[][] g = new int[n / 2][n / 2];
-        int[][] h = new int[n / 2][n / 2];
 
-        // dividing matrix A into 4 parts
+        // dividing matrix A into parts (we need 'a' and 'b')
         divideMatrixIntoBlocks(m1, a, 0, 0);
         divideMatrixIntoBlocks(m1, b, 0, n / 2);
-        divideMatrixIntoBlocks(m1, c, n / 2, 0);
-        divideMatrixIntoBlocks(m1, d, n / 2, n / 2);
 
-
-        // dividing matrix B into 4 parts
+        // dividing matrix B into parts (we need 'e' and 'g')
         divideMatrixIntoBlocks(m2, e, 0, 0);
-        divideMatrixIntoBlocks(m2, f, 0, n / 2);
         divideMatrixIntoBlocks(m2, g, n / 2, 0);
-        divideMatrixIntoBlocks(m2, h, n / 2, n / 2);
-
 
         // C11 =a*e + b*g
-
-
         return additionOf(productOf(a, e), productOf(b, g));
 
     }
@@ -92,32 +82,20 @@ public class MatrixServiceImp extends UnicastRemoteObject implements MatrixServi
         // first matrix
         int[][] a = new int[n / 2][n / 2];
         int[][] b = new int[n / 2][n / 2];
-        int[][] c = new int[n / 2][n / 2];
-        int[][] d = new int[n / 2][n / 2];
 
         // second matrix
-        int[][] e = new int[n / 2][n / 2];
         int[][] f = new int[n / 2][n / 2];
-        int[][] g = new int[n / 2][n / 2];
         int[][] h = new int[n / 2][n / 2];
 
-        // dividing matrix A into 4 parts
+        // dividing matrix A into parts (we need 'a' and 'b')
         divideMatrixIntoBlocks(m1, a, 0, 0);
         divideMatrixIntoBlocks(m1, b, 0, n / 2);
-        divideMatrixIntoBlocks(m1, c, n / 2, 0);
-        divideMatrixIntoBlocks(m1, d, n / 2, n / 2);
 
-
-        // dividing matrix B into 4 parts
-        divideMatrixIntoBlocks(m2, e, 0, 0);
+        // dividing matrix B into parts (we need 'f' and 'h')
         divideMatrixIntoBlocks(m2, f, 0, n / 2);
-        divideMatrixIntoBlocks(m2, g, n / 2, 0);
         divideMatrixIntoBlocks(m2, h, n / 2, n / 2);
 
-
         // C11 =a*f + b*h
-
-
         return additionOf(productOf(a, f), productOf(b, h));
     }
 
@@ -127,34 +105,22 @@ public class MatrixServiceImp extends UnicastRemoteObject implements MatrixServi
 
 
         // first matrix
-        int[][] a = new int[n / 2][n / 2];
-        int[][] b = new int[n / 2][n / 2];
         int[][] c = new int[n / 2][n / 2];
         int[][] d = new int[n / 2][n / 2];
 
         // second matrix
         int[][] e = new int[n / 2][n / 2];
-        int[][] f = new int[n / 2][n / 2];
         int[][] g = new int[n / 2][n / 2];
-        int[][] h = new int[n / 2][n / 2];
 
-        // dividing matrix A into 4 parts
-        divideMatrixIntoBlocks(m1, a, 0, 0);
-        divideMatrixIntoBlocks(m1, b, 0, n / 2);
+        // dividing matrix A into parts (we need 'c' and 'd')
         divideMatrixIntoBlocks(m1, c, n / 2, 0);
         divideMatrixIntoBlocks(m1, d, n / 2, n / 2);
 
-
-        // dividing matrix B into 4 parts
+        // dividing matrix B into parts (we need 'e' and 'g')
         divideMatrixIntoBlocks(m2, e, 0, 0);
-        divideMatrixIntoBlocks(m2, f, 0, n / 2);
         divideMatrixIntoBlocks(m2, g, n / 2, 0);
-        divideMatrixIntoBlocks(m2, h, n / 2, n / 2);
-
 
         // C11 =c*e + d*g
-
-
         return additionOf(productOf(c, e), productOf(d, g));
     }
 
@@ -164,34 +130,22 @@ public class MatrixServiceImp extends UnicastRemoteObject implements MatrixServi
 
 
         // first matrix
-        int[][] a = new int[n / 2][n / 2];
-        int[][] b = new int[n / 2][n / 2];
         int[][] c = new int[n / 2][n / 2];
         int[][] d = new int[n / 2][n / 2];
 
         // second matrix
-        int[][] e = new int[n / 2][n / 2];
         int[][] f = new int[n / 2][n / 2];
-        int[][] g = new int[n / 2][n / 2];
         int[][] h = new int[n / 2][n / 2];
 
-        // dividing matrix A into 4 parts
-        divideMatrixIntoBlocks(m1, a, 0, 0);
-        divideMatrixIntoBlocks(m1, b, 0, n / 2);
+        // dividing matrix B into parts (we need 'c' and 'd')
         divideMatrixIntoBlocks(m1, c, n / 2, 0);
         divideMatrixIntoBlocks(m1, d, n / 2, n / 2);
 
-
-        // dividing matrix B into 4 parts
-        divideMatrixIntoBlocks(m2, e, 0, 0);
+        // dividing matrix B into parts (we need 'f' and 'h')
         divideMatrixIntoBlocks(m2, f, 0, n / 2);
-        divideMatrixIntoBlocks(m2, g, n / 2, 0);
         divideMatrixIntoBlocks(m2, h, n / 2, n / 2);
 
-
         // C22 =c*f + d*h
-
-
         return additionOf(productOf(c, f), productOf(d, h));
     }
 }
